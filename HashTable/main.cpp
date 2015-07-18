@@ -12,7 +12,7 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     
-    int size = 1;
+    int size = 10;
     Hash hashObj = Hash(&size);
     
     hashObj.setValue("Andrew", "Yolo");
