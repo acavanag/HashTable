@@ -22,6 +22,7 @@ public:
     void removeValue(string key);
     void setValue(string key, string value);
     void printTable();
+    void cleanTable();
     
 private:
     

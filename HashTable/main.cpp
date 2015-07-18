@@ -29,6 +29,7 @@ int main(int argc, const char * argv[]) {
     
     hashObj.printTable();
 
-
+    hashObj.cleanTable();
+    
     return 0;
 }

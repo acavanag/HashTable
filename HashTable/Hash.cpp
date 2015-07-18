@@ -79,6 +79,32 @@ void Hash::removeValue(string key)
     }
 }
 
+void Hash::cleanTable()
+{
+    for (int i = 0; i < hashTableSize; i++) {
+        
+        if (hashTable[i].isSet == true) {
+            
+            hashTable[i].isSet = false;
+            Item *ptr = &hashTable[i];
+            Item *delPtr;
+            
+            while (ptr->next != nullptr) {
+                delPtr = ptr;
+                ptr = ptr->next;
+                if (delPtr != &hashTable[i]) {
+                    delete delPtr;
+                }
+            }
+            
+            if (ptr != &hashTable[i] && ptr != nullptr) {
+                delete ptr;
+            }
+        }
+    }
+    delete [] hashTable;
+}
+
 void Hash::setValue(string key, string value)
 {
     int index = Hash::hash(key);
