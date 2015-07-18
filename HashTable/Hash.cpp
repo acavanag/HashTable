@@ -43,6 +43,42 @@ string* Hash::valueForKey(string key)
     }
 }
 
+void Hash::removeValue(string key)
+{
+    int index = Hash::hash(key);
+    if (hashTable[index].isSet == false) {
+        return;
+    } else {
+        Item *ptr = &hashTable[index];
+        
+        Item *prevPtr = ptr;
+        while (ptr->next != NULL && ptr->key != key) {
+            prevPtr = ptr;
+            ptr = ptr->next;
+        }
+        
+        if (ptr->key != key) {
+            return;
+        }
+        
+        if (&hashTable[index] == ptr && ptr->next == nullptr) {
+            ptr->isSet = false;
+        } else if (&hashTable[index] == ptr && ptr->next != nullptr) {
+            Item *delPtr = ptr->next;
+            ptr->key = delPtr->key;
+            ptr->value = delPtr->value;
+            ptr->next = delPtr->next;
+            delete delPtr;
+        } else if (&hashTable[index] != ptr && ptr->next != nullptr) {
+            prevPtr->next = ptr->next;
+            delete ptr;
+        } else if (&hashTable[index] != ptr && ptr->next == nullptr) {
+            prevPtr->next = nullptr;
+            delete ptr;
+        }
+    }
+}
+
 void Hash::setValue(string key, string value)
 {
     int index = Hash::hash(key);

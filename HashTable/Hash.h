@@ -19,6 +19,7 @@ public:
     Hash(int *size);
     
     string* valueForKey(string key);
+    void removeValue(string key);
     void setValue(string key, string value);
     void printTable();
     
